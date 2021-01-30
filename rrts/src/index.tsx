@@ -1,17 +1,32 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+const App: React.FC = () => {
+  const [counter, setCounter] = useState<number>(0);
+  const [text, setText] = useState<string>('');
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const increment = (): void => setCounter(counter => counter + 1);
+  const decrement = (): void => setCounter(counter => counter - 1);
+  const focusTextInput = (): void => inputRef.current?.focus()
+  
+  useEffect((): void => {
+    focusTextInput()
+  }, [])
+
+  return (
+    <div>
+      <h1>Counter: {counter}</h1>
+      <h1>Input: {text}</h1>
+      <button onClick={increment}>Increment</button>
+      <button onClick={decrement}>Decrement</button>
+      <button onClick={focusTextInput}>Focus Text Input</button>
+      <form action="">
+      <input ref={inputRef} type="text" onChange={e => setText(e.target.value) } value={text}/>
+      </form>
+    </div>
+  );
+}
+
+ReactDOM.render(<App />, document.getElementById('root'));
