@@ -1,0 +1,45 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  /*
+  We're working with 'rem' where 10px === 1rem
+  so we do the following math
+  (desired default pixel / default browser pixel) * 100
+            10           /          16            * 100
+                        62.5
+  */
+
+  // - 1rem = 10px (10 / 16)
+  font-size: 62.5%;
+
+  @include responsive(tab-land) {
+    // - 1rem = 9px (9 / 16)
+    font-size: 56.25%;
+  }
+
+  @include responsive(tab-port) {
+    // - 1rem = 8px (8 / 16)
+    font-size: 50%;
+  }
+
+  @include responsive(big-desktop) {
+    // - 1rem = 12px (12 / 16)
+    font-size: 75%;
+  }
+}
+
+body {
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+}

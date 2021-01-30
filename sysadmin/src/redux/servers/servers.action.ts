@@ -1,0 +1,1 @@
+export const getServers = (): void => console.log('Fetching Servers');

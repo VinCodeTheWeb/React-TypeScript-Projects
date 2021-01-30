@@ -1,0 +1,48 @@
+// MEDIA QUERY MANAGER
+
+// PHONE = 0PX - 600PX
+// TABLET PORTRAIT = 600PX - 900PX
+// TABLET LANDSCAPE = 900PX - 1200PX
+// BIG DESKTOP = 1800PX
+
+// ORDER: BASE > TYPO > GENERAL LAYOUT > GRID > PAGE LAYOUT > COMPONENTS
+
+/*
+$breakpoint arguments:
+- phone
+- tab-port
+- tab-land
+- big-desktop
+*/
+
+// 1em = 16px
+
+@mixin responsive($breakpoint) {
+  @if $breakpoint==phone {
+    // PHONE = 0PX - 600PX
+    @media only screen and (max-width: 37.5em) {
+      @content;
+    }
+  }
+
+  @if $breakpoint==tab-port {
+    // TABLET PORTRAIT = 600px - 900px
+    @media only screen and (max-width: 56.25em) {
+      @content;
+    }
+  }
+
+  @if $breakpoint==tab-land {
+    // TABLET LANDSCAPE = 900px - 1200PX
+    @media only screen and (max-width: 75em) {
+      @content;
+    }
+  }
+
+  @if $breakpoint==big-desktop {
+    // BIG DESKTOP = 1800px
+    @media only screen and (min-width: 112.5em) {
+      @content;
+    }
+  }
+}
